@@ -78,5 +78,5 @@ gulp.task('clean', function (){
       ]);
     
 });
-gulp.task('buildAll', ['clean','build', 'less']);
+gulp.task('buildAll', ['build', 'less']);
 gulp.task('default', ['browser-sync']);
