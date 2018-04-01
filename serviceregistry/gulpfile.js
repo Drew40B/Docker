@@ -6,6 +6,7 @@ var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 var cp = require('child_process');
 var tsb = require('gulp-tsb');
+var del = require('del');
 
 
 // compile less files from the ./styles folder
@@ -71,5 +72,11 @@ gulp.task('watch', function () {
     gulp.watch('src/styles/**/*.less', ['less']);
 }); 
 
-gulp.task('buildAll', ['build', 'less']);
+gulp.task('clean', function (){
+    return del([
+        'out/**/*'
+      ]);
+    
+});
+gulp.task('buildAll', ['clean','build', 'less']);
 gulp.task('default', ['browser-sync']);
