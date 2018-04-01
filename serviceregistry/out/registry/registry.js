@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Registry = /** @class */ (function () {
     function Registry() {
-        this.Entries = new Array(0);
+        this.Entries = new Map();
     }
     return Registry;
 }());

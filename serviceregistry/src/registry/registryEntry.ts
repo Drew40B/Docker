@@ -10,6 +10,10 @@ export class RegistryEntry{
     serviceName:string;
     instanceId:string;
     status:StatusEnum;
-    tests: Test[]
+    tests: Test[];
+
+    createKey() :string{
+        return `${this.serviceName}:${this.instanceId}`;
+    }
 
 }

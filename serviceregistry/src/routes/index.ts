@@ -1,22 +1,29 @@
-import { Router } from 'express';
-import {Registry} from "../registry/registry"
-import { RegistryEntry } from '../registry/registryEntry';
+import { Router } from "express";
+import { Registry } from "../registry/registry";
+import { RegistryEntry } from "../registry/registryEntry";
 
 const index: Router = Router();
 const registry = new Registry();
 
 /* GET home page. */
-index.get('/', function(req, res, next) {
- // res.render('index', { title: 'Visual Studio Code!' });
- res.send(registry);
+index.get("/", function(req, res, next) {
+  res.send(Array.from(registry.Entries.values()));
 });
 
-index.post('/', function(req,res,next){
-   let entry = <RegistryEntry> req.body;
+index.post("/", function(req, res, next) {
+  let entry = <RegistryEntry>req.body;
 
-   registry.Entries.push(entry);
+  let key =  `${entry.serviceName}:${entry.instanceId}`;
 
-   res.status(200).send("OK")
+  var map = registry.Entries;
+
+  map.set (key, entry);
+
+  res.status(200).send(entry);
+
+
+
+
 });
 
 export default index;

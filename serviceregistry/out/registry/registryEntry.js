@@ -9,6 +9,9 @@ var StatusEnum;
 var RegistryEntry = /** @class */ (function () {
     function RegistryEntry() {
     }
+    RegistryEntry.prototype.createKey = function () {
+        return this.serviceName + ":" + this.instanceId;
+    };
     return RegistryEntry;
 }());
 exports.RegistryEntry = RegistryEntry;

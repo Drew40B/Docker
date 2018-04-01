@@ -1,1 +1,1 @@
-{"version":3,"file":"registry.js","sourceRoot":"","sources":["../../src/registry/registry.ts"],"names":[],"mappings":";;AAGA;IAEI;QACI,IAAI,CAAC,OAAO,GAAI,IAAI,KAAK,CAAC,CAAC,CAAC,CAAC;IACjC,CAAC;IAGL,eAAC;AAAD,CAAC,AAPD,IAOC;AAPY,4BAAQ"}
+{"version":3,"file":"registry.js","sourceRoot":"","sources":["../../src/registry/registry.ts"],"names":[],"mappings":";;AAGA;IAEI;QACI,IAAI,CAAC,OAAO,GAAI,IAAI,GAAG,EAAE,CAAC;IAC9B,CAAC;IAGL,eAAC;AAAD,CAAC,AAPD,IAOC;AAPY,4BAAQ"}
