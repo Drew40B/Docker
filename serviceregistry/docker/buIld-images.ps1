@@ -1,1 +1,0 @@
-docker build -f registry.dockerfile ..\ -t drew:registry
