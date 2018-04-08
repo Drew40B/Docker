@@ -1,0 +1,1 @@
+docker run  -e PORT=4000 -p 4000:4000 drew/registry
