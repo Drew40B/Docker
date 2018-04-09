@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-less": "^4.0.0"
+    "gulp-less": "^4.0.0",
+    "node-rest-client": "^3.1.0",
+    "typed-rest-client": "^1.0.7"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.1",
