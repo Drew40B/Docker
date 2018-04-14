@@ -38,29 +38,57 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ServiceRequest_1 = require("./ServiceRequest");
 var rm = require("typed-rest-client/RestClient");
 var config_1 = require("./config");
+var Status;
+(function (Status) {
+    Status[Status["pass"] = 1] = "pass";
+    Status[Status["warn"] = 0] = "warn";
+    Status[Status["fail"] = -1] = "fail";
+})(Status || (Status = {}));
+var id = process.env.ID || "<Unknown>";
+var config = new config_1.default();
+var _lastStatus = Status.fail;
 function run() {
     return __awaiter(this, void 0, void 0, function () {
-        var id, config, sr, rest, json, headers, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    id = process.env.ID || "<Unknown>";
-                    config = new config_1.default();
-                    console.log("Service Id: " + id);
+                    console.log("Staring Service Id: " + id);
+                    console.log("Delay:" + config.Delay);
+                    return [4 /*yield*/, sendStatus()];
+                case 1:
+                    _a.sent();
+                    setInterval(function () {
+                        sendStatus();
+                    }, config.Delay);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function sendStatus() {
+    return __awaiter(this, void 0, void 0, function () {
+        var sr, status, rest, json, headers, result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
                     sr = new ServiceRequest_1.default();
                     sr.instanceId = id;
                     sr.serviceName = "Service";
-                    sr.status = "red";
+                    status = _lastStatus;
+                    if (config.Alternate) {
+                        status = status == Status.fail ? Status.pass : Status.fail;
+                        _lastStatus = status;
+                    }
+                    sr.status = Status[status];
                     rest = new rm.RestClient("My Agent", config.Url);
                     json = JSON.stringify(sr);
-                    console.log(json);
                     headers = {
                         "Content-Type": "application/json"
                     };
                     return [4 /*yield*/, rest.client.post(config.Url, json, headers)];
                 case 1:
                     result = _a.sent();
-                    console.log("Post made to " + config.Url + ". Response: " + result.message.statusCode + " (" + result.message.statusMessage);
+                    console.log(new Date().toLocaleString('en-GB') + " Sending status: " + Status[status] + " to " + config.Url + ". Response: " + result.message.statusCode + " (" + result.message.statusMessage + ")");
                     return [2 /*return*/];
             }
         });
