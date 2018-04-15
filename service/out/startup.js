@@ -67,7 +67,7 @@ function run() {
 }
 function sendStatus() {
     return __awaiter(this, void 0, void 0, function () {
-        var sr, status, rest, json, headers, result;
+        var sr, status, rest, json, headers, result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -85,11 +85,19 @@ function sendStatus() {
                     headers = {
                         "Content-Type": "application/json"
                     };
-                    return [4 /*yield*/, rest.client.post(config.Url, json, headers)];
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, rest.client.post(config.Url, json, headers)];
+                case 2:
                     result = _a.sent();
-                    console.log(new Date().toLocaleString('en-GB') + " Sending status: " + Status[status] + " to " + config.Url + ". Response: " + result.message.statusCode + " (" + result.message.statusMessage + ")");
-                    return [2 /*return*/];
+                    console.log(new Date().toLocaleString("en-GB") + " Sending status: " + Status[status] + " to " + config.Url + ". Response: " + result.message.statusCode + " (" + result.message.statusMessage + ")");
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });

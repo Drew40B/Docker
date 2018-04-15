@@ -46,12 +46,18 @@ async function sendStatus() {
     "Content-Type": "application/json"
   };
 
-  let result = await rest.client.post(config.Url, json, headers);
+  try {
+    let result = await rest.client.post(config.Url, json, headers);
 
-  console.log(
-    `${new Date().toLocaleString('en-GB')} Sending status: ${Status[status]} to ${config.Url}. Response: ${result.message.statusCode} (${result.message.statusMessage})`
-  );
-    
-
+    console.log(
+      `${new Date().toLocaleString("en-GB")} Sending status: ${
+        Status[status]
+      } to ${config.Url}. Response: ${result.message.statusCode} (${
+        result.message.statusMessage
+      })`
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }
 run();
